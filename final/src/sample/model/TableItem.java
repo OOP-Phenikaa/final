@@ -5,14 +5,14 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 import java.text.SimpleDateFormat;
 
-import static sample.model.myTreeItem.folderExpandImage;
+import static sample.model.MyTreeItem.folderExpandImage;
 
-import static sample.model.myTreeItem.fileImage;
+import static sample.model.MyTreeItem.fileImage;
 
 
 //tableItem-the adapter that adapts the File to an item that can be set on Table
 
-public class TableItem extends baseItem{
+public class TableItem extends BaseItem{
 
 
     private long size;

@@ -7,7 +7,7 @@ import java.io.File;
 
 public class ItemFactory {
 
-    public baseItem getItem(boolean tableRender,File file){
+    public BaseItem getItem(boolean tableRender,File file){
         if(tableRender){
             return new TableItem(file);
         }

@@ -6,7 +6,7 @@ import java.io.File;
 
 //tileItem-the adapter that takes the adaptee file and set it on TilePane through Tile class
 
-public class TileItem extends baseItem {
+public class TileItem extends BaseItem {
 
     public static Image folderExpandImage=new Image(ClassLoader.getSystemResourceAsStream("sample/res/folderIcon.png"));
     public static Image fileImage=new Image(ClassLoader.getSystemResourceAsStream("sample/res/fileIcon.png"));

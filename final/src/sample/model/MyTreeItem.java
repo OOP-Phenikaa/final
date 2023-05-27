@@ -1,10 +1,6 @@
 
 package sample.model;
 
-/**
- * Created by t on 4/30/17.
- */
-
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.TreeItem;
@@ -15,7 +11,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class myTreeItem extends TreeItem<String>{
+public class MyTreeItem extends TreeItem<String>{
 
     //image loaded for setting
     public static Image folderCollapseImage=new Image(ClassLoader.getSystemResourceAsStream("sample/res/folder.png"));
@@ -29,7 +25,7 @@ public class myTreeItem extends TreeItem<String>{
     private boolean isDirectory;
     public boolean isDirectory(){return(this.isDirectory);}
 
-    public myTreeItem(Path file){
+    public MyTreeItem(Path file){
         super(file.toString());
         this.fullPath=file.toString();
 
@@ -59,7 +55,7 @@ public class myTreeItem extends TreeItem<String>{
         this.addEventHandler(TreeItem.branchCollapsedEvent(),new EventHandler(){
             @Override
             public void handle(Event e){
-                myTreeItem source=(myTreeItem)e.getSource();
+                MyTreeItem source=(MyTreeItem)e.getSource();
                 if(source.isDirectory()&&!source.isExpanded()){
                     ImageView iv=(ImageView)source.getGraphic();
                     iv.setImage(folderCollapseImage);

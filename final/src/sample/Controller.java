@@ -23,7 +23,7 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ResourceBundle;
 
-import static sample.model.myTreeItem.folderExpandImage;
+import static sample.model.MyTreeItem.folderExpandImage;
 
 public class Controller implements Initializable {
 
@@ -50,28 +50,28 @@ public class Controller implements Initializable {
     private ToggleButton toggle2;
 
     @FXML
-    private TableColumn<baseItem,Long> Size;
+    private TableColumn<BaseItem,Long> Size;
 
     @FXML
-    private TableColumn<baseItem,ImageView> Icon;
+    private TableColumn<BaseItem,ImageView> Icon;
 
     @FXML
     private Button backButton;
 
     @FXML
-    private TableView<baseItem> tableView;
+    private TableView<BaseItem> tableView;
 
     @FXML
     private ToggleButton toggle;
 
     @FXML
-    private TableColumn<baseItem, String> Date;
+    private TableColumn<BaseItem, String> Date;
 
     @FXML
-    private TableColumn<baseItem, String> Name;
+    private TableColumn<BaseItem, String> Name;
 
 
-    private ObservableList<baseItem> observableList= FXCollections.observableArrayList();
+    private ObservableList<BaseItem> observableList= FXCollections.observableArrayList();
 
     ItemFactory itemFactory=new ItemFactory();
 
@@ -124,7 +124,7 @@ public class Controller implements Initializable {
         for(File x :file.listFiles())
         {
             TableItem tableItem=new TableItem(x);
-            baseItem baseItem=itemFactory.getItem(tableEnabled,x);
+            BaseItem baseItem=itemFactory.getItem(tableEnabled,x);
             if(tableEnabled)observableList.add(baseItem);
             else{
                 Tile tile=new Tile(baseItem.getName(),baseItem.getImage(),baseItem.getPath());
@@ -157,7 +157,7 @@ public class Controller implements Initializable {
 
 
         // thiết lập đường dẫn gốc
-        treeView.setRoot(new myTreeItem(init.toPath()));
+        treeView.setRoot(new MyTreeItem(init.toPath()));
 
         treeView.getRoot().setExpanded(true);
 
@@ -166,7 +166,7 @@ public class Controller implements Initializable {
         treeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                myTreeItem source = (myTreeItem) treeView.getSelectionModel().getSelectedItem();
+                MyTreeItem source = (MyTreeItem) treeView.getSelectionModel().getSelectedItem();
 
 
                 if (source!= null){
@@ -187,7 +187,7 @@ public class Controller implements Initializable {
                             if(attribs.isDirectory()){
                                 DirectoryStream<Path> dir=Files.newDirectoryStream(path);
                                 for(Path file:dir){
-                                    myTreeItem treeNode=new myTreeItem(file);
+                                    MyTreeItem treeNode=new MyTreeItem(file);
                                     source.getChildren().add(treeNode);
                                 }
                             }
@@ -214,7 +214,7 @@ public class Controller implements Initializable {
             public void handle(MouseEvent mouseEvent) {
 
                 if(mouseEvent.getClickCount()==2){
-                baseItem baseItem = tableView.getSelectionModel().getSelectedItem();
+                BaseItem baseItem = tableView.getSelectionModel().getSelectedItem();
 
                 currDir.setText(baseItem.getPath());
 

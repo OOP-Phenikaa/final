@@ -4,9 +4,8 @@ package sample.model;
 import javafx.scene.image.Image;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 
-public class baseItem {
+public class BaseItem {
 
     private String name;
 
@@ -16,7 +15,7 @@ public class baseItem {
 
 
 
-    public baseItem(File file) {
+    public BaseItem(File file) {
         name=file.getName();
         path=file.getPath();
 
