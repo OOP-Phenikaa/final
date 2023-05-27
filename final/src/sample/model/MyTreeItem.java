@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import javax.imageio.ImageIO;
 
 public class MyTreeItem extends TreeItem<String>{
 
@@ -18,7 +19,9 @@ public class MyTreeItem extends TreeItem<String>{
     public static Image folderExpandImage=new Image(ClassLoader.getSystemResourceAsStream("sample/res/folder-open.png"));
     public static Image fileImage=new Image(ClassLoader.getSystemResourceAsStream("sample/res/text-x-generic.png"));
 
-    //this stores the full path to the file or directory
+    // cái này lưu đường dẫn đầy đủ đến tệp hoặc thư mục
+
+
     private String fullPath;
     public String getFullPath(){return(this.fullPath);}
 
@@ -29,7 +32,7 @@ public class MyTreeItem extends TreeItem<String>{
         super(file.toString());
         this.fullPath=file.toString();
 
-        //test if this is a directory and set the icon
+        // kiểm tra xem đây có phải là thư mục không và đặt biểu tượng
         if(Files.isDirectory(file)){
             this.isDirectory=true;
             this.setGraphic(new ImageView(folderCollapseImage));
@@ -50,7 +53,7 @@ public class MyTreeItem extends TreeItem<String>{
                 this.setValue(value);
             }
         }
-
+        
 
         this.addEventHandler(TreeItem.branchCollapsedEvent(),new EventHandler(){
             @Override

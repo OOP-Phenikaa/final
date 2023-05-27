@@ -10,10 +10,15 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+
+
         //loading the xml forview
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+
         primaryStage.setTitle("File Explorer");
         //800*500 resolution
+
 
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();

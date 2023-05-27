@@ -12,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import sample.model.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +21,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ResourceBundle;
-
 import static sample.model.MyTreeItem.folderExpandImage;
 
 public class Controller implements Initializable {
@@ -71,6 +69,7 @@ public class Controller implements Initializable {
     private TableColumn<BaseItem, String> Name;
 
 
+
     private ObservableList<BaseItem> observableList= FXCollections.observableArrayList();
 
     ItemFactory itemFactory=new ItemFactory();
@@ -79,6 +78,7 @@ public class Controller implements Initializable {
     void currDirShow(ActionEvent event) {
 
     }
+
 
     @FXML
     void goToDirAction(ActionEvent event) {
@@ -107,6 +107,48 @@ public class Controller implements Initializable {
         currentPath=up.getParentFile().getPath();
         currDir.setText(currentPath);
         showView();
+    }
+
+    @FXML
+    void initialize() {
+        // Thêm ổ đĩa và thư mục gốc
+        TreeItem<String> drives = addDrives();
+        TreeItem<String> root = addRootDirectory();
+
+        treeView.setRoot(drives);
+        treeView.getRoot().getChildren().add(root);
+//        treeView.getRoot().getChildren().addAll(addDrives(), addRootDirectory());
+
+    }
+    private TreeItem<String> addDrives() {
+        // Thêm các ổ đĩa vào TreeItem
+        TreeItem<String> drives = new TreeItem<>();
+        drives.setExpanded(true);
+        for (File drive : File.listRoots()) {
+            TreeItem<String> driveItem = new TreeItem<>(drive.getName());
+            driveItem.setExpanded(true);
+            drives.getChildren().add(driveItem);
+        }
+        return drives;
+    }
+
+    private TreeItem<String> addRootDirectory() {
+        // Thêm thư mục gốc và các thư mục con của nó vào TreeItem
+        TreeItem<String> root = new TreeItem<>("Root");
+        root.setExpanded(true);
+
+        // Lấy danh sách thư mục con của thư mục gốc
+        File[] directories = new File(System.getProperty("user.home"))
+                .listFiles(File::isDirectory);
+
+        // Thêm các thư mục con vào root
+        for (File directory : directories) {
+            TreeItem<String> child = new TreeItem<>(directory.getName());
+            child.setExpanded(true);
+            root.getChildren().add(child);
+        }
+
+        return root;
     }
 
 
@@ -145,6 +187,7 @@ public class Controller implements Initializable {
         if(tableEnabled)tableView.setItems(observableList);
 
     }
+
 
 
     @Override
