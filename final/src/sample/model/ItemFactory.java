@@ -2,9 +2,7 @@ package sample.model;
 
 import java.io.File;
 
-/**
- * Created by t on 4/30/17.
- */
+
 //Factory pattern for two views
 
 public class ItemFactory {

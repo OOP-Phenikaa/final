@@ -1,8 +1,5 @@
 package sample;
 
-/**
- * Created by t on 4/30/17.
- */
 public class Preferences {
 
 

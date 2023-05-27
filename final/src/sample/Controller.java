@@ -11,10 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
-import sample.model.ItemFactory;
-import sample.model.Tile;
-import sample.model.baseItem;
-import sample.model.myTreeItem;
+import sample.model.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -117,7 +114,7 @@ public class Controller implements Initializable {
 
         if(tableEnabled)observableList.clear();
         else{
-            //clearing the view before setting the new directory file
+            // xóa chế độ xem trước khi đặt tệp thư mục mới
             if(!tilePane.getChildren().isEmpty()){
                 tilePane.getChildren().clear();
             }
@@ -126,7 +123,7 @@ public class Controller implements Initializable {
         File file=new File(currentPath);
         for(File x :file.listFiles())
         {
-            //TableItem tableItem=new TableItem(x);
+            TableItem tableItem=new TableItem(x);
             baseItem baseItem=itemFactory.getItem(tableEnabled,x);
             if(tableEnabled)observableList.add(baseItem);
             else{
@@ -153,13 +150,13 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //taking home directiry for tree root node
+        //lấy thư mục gốc cho tree root node
         File init=new File(System.getProperty("user.home"));
         currentPath=System.getProperty("user.dir");
         File curr=new File(currentPath);
 
 
-        //setting root path
+        // thiết lập đường dẫn gốc
         treeView.setRoot(new myTreeItem(init.toPath()));
 
         treeView.getRoot().setExpanded(true);
@@ -175,7 +172,7 @@ public class Controller implements Initializable {
                 if (source!= null){
                     currentPath=source.getFullPath();
                     showView();
-                    //setting current directory
+                    // thiết lập thư mục
                     currDir.setText(currentPath);
                     //setting image for expanded treeNode
                     if(source.isDirectory()&&source.isExpanded()){

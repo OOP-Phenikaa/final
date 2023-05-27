@@ -6,12 +6,6 @@ import javafx.scene.image.Image;
 import java.io.File;
 import java.text.SimpleDateFormat;
 
-/**
- * Created by t on 4/30/17.
- */
-
-//the base item for our TableView and TileView.
-
 public class baseItem {
 
     private String name;

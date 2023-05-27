@@ -9,9 +9,6 @@ import static sample.model.myTreeItem.folderExpandImage;
 
 import static sample.model.myTreeItem.fileImage;
 
-/**
- * Created by t on 4/30/17.
- */
 
 //tableItem-the adapter that adapts the File to an item that can be set on Table
 

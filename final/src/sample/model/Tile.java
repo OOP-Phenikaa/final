@@ -7,12 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
-/**
- * Created by t on 4/30/17.
- */
-
-//The structure defined for TileElement
-
 public class Tile extends VBox {
     Label name;
     Image image;
@@ -42,6 +36,8 @@ public class Tile extends VBox {
     public void setPath(String path) {
         this.path = path;
     }
+
+
 
     public Tile(String n, Image image,String p){
         name=new Label(n);
